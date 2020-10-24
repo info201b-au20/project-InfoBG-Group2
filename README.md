@@ -1,4 +1,4 @@
-# Final Project
+# Final Project Proposal
 Section: INFO 201 BG<br>
 Group Member: Jacob Fell, Doris Xu, Hatice Ece Oz, Xiaoyu Zhu, Ellie Stegman
 
