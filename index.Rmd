@@ -36,8 +36,14 @@ gun_incidents_map
 ```
 
 
-### 4.2 
-<!-- Describe the purpose of each chart (e.g., "this chart was intended to show the relationship between..."), render each chart, and describe pertinent observations found in each chart -->
-
+### 4.2 US Police Shooting Victims by Race
+- This bar chart was intended to show trends in gun incidents in the U.S. from 2013 to 2018.
+- It shows the distribution of the race of each of the victims of a fatal police shooting.
+- The majority of victims have been white, almost double the amount of black victims which is the second highest.
+- Asian, Native, and other races have significantly smaller incidences. 
+```{r}
+source("scripts/bar chart.R")
+shooting_by_race
+```
 ### 4.3
 <!-- Describe the purpose of each chart (e.g., "this chart was intended to show the relationship between..."), render each chart, and describe pertinent observations found in each chart -->
