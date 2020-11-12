@@ -20,7 +20,7 @@ America is an exceptional country when it comes to guns. It’s one of the few c
 
 The data in this dataset was downloaded from [kaggle](https://www.kaggle.com/). In the following report, we will mainly use two datasets, US Police Shootings and US Gun Violence. 
 
-[US_Gun_Violence](https://www.kaggle.com/ericking310/us-gun-violence) gathered by Eric Jing The CSV file contains data for all recorded gun violence incidents in the US between January 2013. The data consist of 240k incidents, with detailed information about each incident. 
+[US_Gun_Violence](https://www.kaggle.com/ericking310/us-gun-violence) gathered by Eric Jing The CSV file contains data for all recorded gun violence incidents in the US between January 2013 to March 2018. The data consist of 240k incidents, with detailed information about each incident. 
 
 [US Police Shootings](https://www.kaggle.com/ahsen1330/us-police-shootings) collected by Ahsen Nazir, a data analyst. The data is about police shootings in the United States across different states. The data also involves details about a race, whether the person was armed, threatening had a mental illness, etc. It contains 5924 observations and 15 features. One of the questions can be related to this dataset is whether or not specific racial groups are more subjected to police shootings.
 
@@ -33,6 +33,8 @@ The data in this dataset was downloaded from [kaggle](https://www.kaggle.com/). 
 ## 4 Data Exploration 
 ### 4.1 Overall gun incident trends in the U.S. from 2013 to 2018
 - This map was intended to show geographic trends in gun incidents in the U.S. from 2013 to 2018.
+- East coast cities have more gun incidents than cities in central and west.
+- The majority of gun violence takes place in California, Texas, Florida, and Illinois.
 ```{r}
 gun_incidents_map
 ```

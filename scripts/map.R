@@ -19,11 +19,12 @@ year_gun_violence <- year_gun_violence %>%
             incidents= sum(n_killed) + sum(n_injured))
 
 state_gun_violence <- left_join(
-  year_gun_violence, state_abbr %>% rename(state = State, state_abbr = Abbreviation))
+  year_gun_violence, state_abbr %>% 
+    rename(state = State, state_abbr = Abbreviation))
 
 state_gun_violence <- mutate(
   state_gun_violence,
-  hover = paste0(state_abbr, ": ", num_killed))
+  hover = paste0("State: ", state, "\n# of Incidents: ", num_killed))
 
 state_gun_violence <- state_gun_violence %>% 
   select(year, state_abbr, num_killed, incidents, hover)
