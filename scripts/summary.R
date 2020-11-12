@@ -1,7 +1,8 @@
 library(tidyverse)
 library(dplyr)
+library(stringr)
 
-shootings <- read.csv("https://media.githubusercontent.com/media/info201b-au20/project-InfoBG-Group2/gh-pages/data/USPoliceShootings.csv")
+shootings <- read.csv("USPoliceShootings.csv")
 rows <- nrow(shootings)
 cols <- ncol(shootings)
 
@@ -33,9 +34,3 @@ in_2015 <- length(dates[format(dates, "%Y") == "2015"])
 
 # Mental Illness
 mentall_ill <- filter(shootings, signs_of_mental_illness == "True")
-
-
-
-# state_group <- group_by(shootings, state)
-# age_state_group <- summarize(state_group, mean_age = mean(age))
-# state_sum <- summarize(state_group, state_sums = count(shootings))
