@@ -89,7 +89,7 @@ police_shooting_map <- plot_geo(year_police_shootings,
             text = ~hover,
             hoverinfo = "text") %>% 
   layout(geo = list(scope = "usa"),
-         title = "Gun Incidents in the U.S.\n2015 - 2020") %>% 
+         title = "Police Gun Incidents in the U.S.\n2015 - 2020") %>% 
   config(displayModeBar = FALSE) %>% 
   colorbar(title = "number of incidents")
 police_shooting_map
