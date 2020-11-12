@@ -32,7 +32,7 @@ The data in this dataset was downloaded from [kaggle](https://www.kaggle.com/). 
 
 ## 4 Data Exploration 
 ### 4.1 Overall gun incident trends in the U.S. from 2013 to 2018
-- This map was intended to identify geographic variations in gun incidents, here is a choropleth map of gun incidents in the U.S. from 2013 to 2018:
+- This map was intended to show geographic trends in gun incidents in the U.S. from 2013 to 2018.
 ```{r}
 gun_incidents_map
 ```
