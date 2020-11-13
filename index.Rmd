@@ -10,6 +10,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 source("scripts/map.R")
 source("scripts/bar chart.R")
+source("scripts/pie.R")
 
 library("knitr")
 ```
@@ -52,4 +53,11 @@ police_shooting_map
 shooting_by_race
 ```
 ### 4.3
-<!-- Describe the purpose of each chart (e.g., "this chart was intended to show the relationship between..."), render each chart, and describe pertinent observations found in each chart -->
+- This pie chart was intended to show the proportion of different characteristics of gun incidents in the U.S. from 2013 to 2018.
+- The top 7 high level characteristics that have the greatest rate of occurrence are "Shot-Wounded/Injured", "Shot-Dead", "Non-shooting Incident", "Shots Fired - No injuries", "Armed robbery", "Non-shooting Incident", "Institution/Group/Business", and "TSA action".
+- There are totally 53 types of high level characteristics. For a better visualization as a whole, rarer characteristics were grouped into a category named "other", but it doesn't mean the completely ignoring of those characteristics. In later data exploration, we will also zoom into this category.
+- More than half of the gun violence incidents were resulted in either injury or deaths.
+- When talking about gun violence, there are a also a lot of non-shooting incidents.
+```{r}
+incident_characteristics_pie_chart
+```
