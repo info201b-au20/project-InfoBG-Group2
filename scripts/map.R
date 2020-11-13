@@ -76,7 +76,7 @@ year_police_shootings <- year_police_shootings %>%
 
 year_police_shootings <- mutate(
   year_police_shootings,
-  hover = paste0(state, ": ", cases))
+  hover = paste0("State: ", state, "\n# of Incidents: ", cases))
 
 police_shooting_map <- plot_geo(year_police_shootings,
                               locationmode = 'USA-states',

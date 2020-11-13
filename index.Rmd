@@ -9,6 +9,7 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 
 source("scripts/map.R")
+source("scripts/bar chart.R")
 
 library("knitr")
 ```
@@ -27,12 +28,18 @@ The data in this dataset was downloaded from [kaggle](https://www.kaggle.com/). 
 <!-- Render your table and describe pertinent observations found in it -->
 
 ## 4 Data Exploration 
-### 4.1 Overall gun incident trends in the U.S. from 2013 to 2018
+### 4.1 Overall gun violence trends in the U.S. from 2013 to 2020
 - This map was intended to show geographic trends in gun incidents in the U.S. from 2013 to 2018.
-- East coast cities have more gun incidents than cities in central and west.
+- East coast states have more gun incidents than states in central and west.
 - The majority of gun violence takes place in California, Texas, Florida, and Illinois.
 ```{r}
 gun_incidents_map
+```
+- This map was intended to show geographic trends in police shooting incidents in the U.S. from 2015 to 2020.
+- Both east and west coast states have relatively more gun incidents than states in central.
+- The majority of police violence takes place in California, Texas, and Florida.
+```{r}
+police_shooting_map
 ```
 
 
@@ -42,7 +49,6 @@ gun_incidents_map
 - The majority of victims have been white, almost double the amount of black victims which is the second highest.
 - Asian, Native, and other races have significantly smaller incidences. 
 ```{r}
-source("scripts/bar chart.R")
 shooting_by_race
 ```
 ### 4.3
