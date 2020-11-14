@@ -11,6 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 source("scripts/map.R")
 source("scripts/bar chart.R")
 source("scripts/pie.R")
+source("scripts/summary.R")
 
 library("knitr")
 ```
@@ -23,6 +24,9 @@ The U.S. is an exceptional country when it comes to guns. It’s one of the few 
 The data in this dataset was downloaded from [kaggle](https://www.kaggle.com/). In the following report, we will mainly use two datasets, US Police Shootings and US Gun Violence. [US Gun Violence](https://www.kaggle.com/ericking310/us-gun-violence) gathered by Eric Jing The CSV file contains data for all recorded gun violence incidents in the US between January 2013 to March 2018. The data consist of 240k incidents, with detailed information about each incident. [US Police Shootings](https://www.kaggle.com/ahsen1330/us-police-shootings) collected by Ahsen Nazir, a data analyst. The data is about police shootings in the United States across different states. The data also involves details about a race, whether the person was armed, threatening had a mental illness, etc. It contains 5924 observations and 15 features. One of the questions can be related to this dataset is whether or not specific racial groups are more subjected to police shootings.
 
 ## 2 Executive summary
+```{r}
+summary_info
+```
 The primary data we looked at (USPoliceShootings) has 4895 observations and 15 columns. The columns contain information about the id, name, date, manner of death, age, gender, race, city, state, signs of mental illness, threat level, flee, body camera, and arms category. We have looked at two liberal states (Washington and California) and two conservative states (Minnesota and Texas). The shooting incidents were 126, 701, 61, 426 in those states respectively. We think we also need population information for those states to make a more fair analysis about police violence in those states. The mean age of the victims was 36.5. The dataset contains data from 2015 to 2020, though only through June in 2020. The incidents were 965, 904, 906, 888, 858 and 374 respectively in those years. The dataset also contained information about 4 racial groups.  The number of incidents for the Asian category was 93, 1298 for Black, 902 for Hispanic and 2476 for White racial group.  1103 of the victims also showed signs of mental illness.
 
 ## 3 Table 
