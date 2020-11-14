@@ -1,8 +1,8 @@
 library(tidyverse)
 
-police_shootings <- read.csv("../data/USPoliceShootings.csv")
-us_gun_violence <- read.csv("../data/USGunViolence.csv")
-state_abbr <- read.csv("../data/state_abbrev.csv")
+police_shootings <- read.csv("data/USPoliceShootings.csv")
+us_gun_violence <- read.csv("data/USGunViolence.csv")
+state_abbr <- read.csv("data/state_abbrev.csv")
 
 gun_violence_df <- left_join(us_gun_violence, state_abbr %>% 
                                rename(state = State))
@@ -31,23 +31,23 @@ explantory_analysis_df <- explantory_analysis_df %>%
 
 
 ################################################################################
-shooting_by_race <- Police_Shootings %>% 
+shooting_by_race <- police_shootings %>% 
   arrange(race)
 
-shooting_by_gender <- Police_Shootings %>% 
+shooting_by_gender <- police_shootings %>% 
   arrange(gender)
 
-shooting_by_age <- Police_Shootings %>% 
+shooting_by_age <- police_shootings %>% 
   arrange(age)
 
-shooting_by_state <- Police_Shootings %>% 
+shooting_by_state <- police_shootings %>% 
   arrange(state)
 
-shooting_by_armed <- Police_Shootings %>% 
+shooting_by_armed <- police_shootings %>% 
   arrange(armed)
 
-shooting_by_death_type <- Police_Shootings %>% 
+shooting_by_death_type <- police_shootings %>% 
   arrange(manner_of_death)
 
-shooting_by_mental_illness <- Police_Shootings %>% 
+shooting_by_mental_illness <- police_shootings %>% 
   arrange(signs_of_mental_illness)

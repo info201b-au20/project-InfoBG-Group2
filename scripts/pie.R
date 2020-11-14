@@ -2,7 +2,7 @@ library(tidyverse)
 
 # DF1: US Gun Violence
 
-gun_violence <- read.csv("../data/USGunViolence.csv")
+gun_violence <- read.csv("data/USGunViolence.csv")
 ###############################################################################
 
 # Pie Chart

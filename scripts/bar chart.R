@@ -2,7 +2,7 @@
 
 library(tidyverse)
 library(ggplot2)
-shootings <- read.csv("../data/USPoliceShootings.csv")
+shootings <- read.csv("data/USPoliceShootings.csv")
 
 by_race <- shootings %>% 
   group_by(race) %>%

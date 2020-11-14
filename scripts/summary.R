@@ -2,7 +2,7 @@ library(tidyverse)
 library(dplyr)
 library(stringr)
 
-shootings <- read.csv("shootings.csv")
+shootings <- read.csv("data/USPoliceShootings.csv")
 summary_info <- list()
 summary_info$rows <- nrow(shootings)
 summary_info$cols <- ncol(shootings)
@@ -14,7 +14,7 @@ summary_info$num_ms <- sum(str_detect(shootings$state, "MS"))
 summary_info$num_tx <- sum(str_detect(shootings$state, "TX"))
 
 # Average Age
-mean_age <- mean(shootings$age)
+summary_info$mean_age <- mean(shootings$age)
 
 # Racial Groups
 summary_info$num_white <- sum(str_detect(shootings$race, "White"))
