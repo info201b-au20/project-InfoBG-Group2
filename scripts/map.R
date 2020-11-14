@@ -1,12 +1,12 @@
 library("dplyr")
 library("plotly") 
 
-setwd("~/Desktop/project-jacobf19/scripts")
-setwd("..")
+#setwd("~/Desktop/project-jacobf19/scripts")
+#setwd("..")
 
-gun_violence <- read.csv("data/USGunViolence.csv")
-state_abbr <- read.csv("data/state_abbrev.csv")
-police_shootings <- read.csv("data/USPoliceShootings.csv")
+gun_violence <- read.csv("../data/USGunViolence.csv")
+state_abbr <- read.csv("../data/state_abbrev.csv")
+police_shootings <- read.csv("../data/USPoliceShootings.csv")
 
 year_gun_violence <- mutate(
   gun_violence,
