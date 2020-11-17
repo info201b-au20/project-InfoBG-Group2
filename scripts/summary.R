@@ -34,4 +34,4 @@ summary_info$in_2016 <- length(dates[format(dates, "%Y") == "2016"])
 summary_info$in_2015 <- length(dates[format(dates, "%Y") == "2015"])
 
 # Mental Illness
-summary_info$mentall_ill <- filter(shootings, signs_of_mental_illness == "True")
+summary_info$mentall_ill <- length(filter(shootings, signs_of_mental_illness == "True"))
