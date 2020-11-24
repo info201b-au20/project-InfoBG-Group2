@@ -1,8 +1,8 @@
 library("dplyr")
 library("plotly") 
 
-setwd("~/Desktop/project-jacobf19/scripts")
-setwd("..")
+#setwd("~/Desktop/project-jacobf19/scripts")
+#setwd("..")
 
 gun_violence <- read.csv("data/USGunViolence.csv")
 state_abbr <- read.csv("data/state_abbrev.csv")
@@ -19,11 +19,12 @@ year_gun_violence <- year_gun_violence %>%
             incidents= sum(n_killed) + sum(n_injured))
 
 state_gun_violence <- left_join(
-  year_gun_violence, state_abbr %>% rename(state = State, state_abbr = Abbreviation))
+  year_gun_violence, state_abbr %>% 
+    rename(state = State, state_abbr = Abbreviation))
 
 state_gun_violence <- mutate(
   state_gun_violence,
-  hover = paste0(state_abbr, ": ", num_killed))
+  hover = paste0("State: ", state, "\n# of Incidents: ", num_killed))
 
 state_gun_violence <- state_gun_violence %>% 
   select(year, state_abbr, num_killed, incidents, hover)
@@ -75,7 +76,7 @@ year_police_shootings <- year_police_shootings %>%
 
 year_police_shootings <- mutate(
   year_police_shootings,
-  hover = paste0(state, ": ", cases))
+  hover = paste0("State: ", state, "\n# of Incidents: ", cases))
 
 police_shooting_map <- plot_geo(year_police_shootings,
                               locationmode = 'USA-states',
@@ -89,7 +90,7 @@ police_shooting_map <- plot_geo(year_police_shootings,
             text = ~hover,
             hoverinfo = "text") %>% 
   layout(geo = list(scope = "usa"),
-         title = "Gun Incidents in the U.S.\n2015 - 2020") %>% 
+         title = "Police Gun Incidents in the U.S.\n2015 - 2020") %>% 
   config(displayModeBar = FALSE) %>% 
   colorbar(title = "number of incidents")
 police_shooting_map

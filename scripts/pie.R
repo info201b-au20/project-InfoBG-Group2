@@ -2,8 +2,7 @@ library(tidyverse)
 
 # DF1: US Gun Violence
 
-gun_violence <- read.csv(url("https://media.githubusercontent.com/media/info201b-au20/project-InfoBG-Group2/gh-pages/data/USGunViolence.csv"))
-
+gun_violence <- read.csv("data/USGunViolence.csv")
 ###############################################################################
 
 # Pie Chart
