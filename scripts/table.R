@@ -27,27 +27,9 @@ police_shootings_df <- police_shootings_df %>%
 explantory_analysis_df <- full_join(gun_violence_df, police_shootings_df)
 
 explantory_analysis_df <- explantory_analysis_df %>% 
+  filter(date >= "2015-01-02", date <= "2018-03-31") %>% 
   group_by(police_shooting_victims_race)
-
-
-################################################################################
-shooting_by_race <- police_shootings %>% 
-  arrange(race)
-
-shooting_by_gender <- police_shootings %>% 
-  arrange(gender)
-
-shooting_by_age <- police_shootings %>% 
-  arrange(age)
-
-shooting_by_state <- police_shootings %>% 
-  arrange(state)
-
-shooting_by_armed <- police_shootings %>% 
-  arrange(armed)
-
-shooting_by_death_type <- police_shootings %>% 
-  arrange(manner_of_death)
-
-shooting_by_mental_illness <- police_shootings %>% 
-  arrange(signs_of_mental_illness)
+  
+rate_police_shooting <- sum(
+  !is.na(explantory_analysis_df$police_shooting_victims_race)) / 
+  nrow(explantory_analysis_df) * 100
