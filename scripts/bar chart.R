@@ -9,6 +9,6 @@ by_race <- shootings %>%
   summarise(race_count = n())
 
 shooting_by_race <- ggplot(data = by_race) +
-  geom_col(mapping = aes(x = race, y = race_count)) +
-  labs(x = "Race", y = "Number Killed", title = "US Police Shooting Victims by Race")
-
+  geom_col(mapping = aes(x = race, y = race_count, fill = race)) +
+  labs(x = "Race", y = "Number Killed", title =
+        "US Police Shooting Victims by Race from 2015-2020")

@@ -30,6 +30,7 @@ The primary data we looked at (USPoliceShootings) has `r summary_info$rows` obse
 
 
 ## 3 Table 
+<<<<<<< HEAD
 - We combine both US Police Shootings dataset and US Gun violence dataset by 
 their mutual time range, which is from 01/02/2015 to 03/31/2018.
 - From dataset, we find out that gun death only holds little of the proportion
@@ -41,6 +42,11 @@ the U.S..
 include the race of the victims in the police shooting incidents to explore is
 that there exist racial issue and injustice. 
 
+=======
+- The data consist 240k observations and 6 variables.
+- Gun death only holds little of the proportion among gun violence.
+- Police shooting incidents are only occupy very little among all gun violence in the U.S..
+>>>>>>> 0bdf752d223dd87429f281996080c571f58c173c
 ```{r}
 explantory_analysis_df
 ```
