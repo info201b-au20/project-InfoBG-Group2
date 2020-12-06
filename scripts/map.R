@@ -1,13 +1,12 @@
 library("dplyr")
 library("plotly") 
 
-#setwd("~/Desktop/project-jacobf19/scripts")
-#setwd("..")
-
 gun_violence <- read.csv("data/USGunViolence.csv")
 state_abbr <- read.csv("data/state_abbrev.csv")
 police_shootings <- read.csv("data/USPoliceShootings.csv")
 
+################################################################################
+#Gun Violence Maps(death && total incidents)
 year_gun_violence <- mutate(
   gun_violence,
   year = format(as.Date(gun_violence$date, format="%Y-%m-%d"),"%Y")
@@ -63,8 +62,8 @@ gun_incidents_map <- plot_geo(state_gun_violence,
   colorbar(title = "number of incidents")
 gun_incidents_map
 
-
-
+################################################################################
+#Police Gun Shootings
 year_police_shootings <- mutate(
   police_shootings,
   year = format(as.Date(police_shootings$date, format="%Y-%m-%d"),"%Y")
@@ -95,3 +94,22 @@ police_shooting_map <- plot_geo(year_police_shootings,
   colorbar(title = "number of incidents")
 police_shooting_map
 
+################################################################################
+#Shiny Map
+build_map <- function(data, var) {
+  map <- plot_geo(data = data,
+                  locationmode = 'USA-states',
+                  frame = ~year) %>% 
+    add_trace(locations = ~state_abbr,
+              z = data[,var],
+              zmin = 0,
+              zmax = max(data[var]),
+              color = data[,var],
+              colorscale = "Reds",
+              text = ~hover,
+              hoverinfo = "text") %>% 
+    layout(geo = list(scope = "usa")) %>% 
+    config(displayModeBar = FALSE) %>% 
+    colorbar(title = "number of incidents")
+  return(map)
+}

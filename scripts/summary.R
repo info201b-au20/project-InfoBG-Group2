@@ -2,8 +2,9 @@ library(tidyverse)
 library(dplyr)
 library(stringr)
 
-shootings <- read.csv("-data/USPoliceShootings.csv")
+shootings <- read.csv("data/USPoliceShootings.csv")
 
+summary_info <- list()
 summary_info$rows <- nrow(shootings)
 summary_info$cols <- ncol(shootings)
 
