@@ -1,6 +1,5 @@
 library(dplyr)
 library(shiny)
-library(RColorBrewer)
 
 ################################################################################
 # Read in data
@@ -31,24 +30,11 @@ state_gun_violence <- left_join(
 
 state_gun_violence <- mutate(
   state_gun_violence,
-  hover = paste0("State: ", state, "\n# of Incidents: ", num_killed))
+  hover_incidents = paste0("State: ", state, "\n# of Incidents: ", incidents),
+  hover_num_killed = paste0("State: ", state, "\n# of deaths: ", num_killed))
 
 state_gun_violence <- state_gun_violence %>% 
-  select(year, state_abbr, num_killed, incidents, hover)
-
-##Police Shooting data
-year_police_shootings <- mutate(
-  police_shootings,
-  year = format(as.Date(police_shootings$date, format="%Y-%m-%d"),"%Y")
-)
-
-year_police_shootings <- year_police_shootings %>% 
-  group_by(year, state) %>% 
-  summarise(cases = n())
-
-year_police_shootings <- mutate(
-  year_police_shootings,
-  hover = paste0("State: ", state, "\n# of Incidents: ", cases))
+  select(year, state_abbr, num_killed, incidents, hover_incidents, hover_num_killed)
 
 ################################################################################
 #Bar
@@ -69,3 +55,4 @@ server <- function(input, output) {
     return(build_map(state_gun_violence, input$mapvar))
   }) 
 }
+

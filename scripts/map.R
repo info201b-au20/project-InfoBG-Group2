@@ -1,5 +1,6 @@
 library("dplyr")
 library("plotly") 
+library("RColorBrewer")
 
 gun_violence <- read.csv("data/USGunViolence.csv")
 state_abbr <- read.csv("data/state_abbrev.csv")
@@ -101,15 +102,16 @@ build_map <- function(data, var) {
                   locationmode = 'USA-states',
                   frame = ~year) %>% 
     add_trace(locations = ~state_abbr,
-              z = data[,var],
+              z = data[[var]],
               zmin = 0,
-              zmax = max(data[var]),
-              color = data[,var],
-              colorscale = "Reds",
-              text = ~hover,
+              zmax = max(data[[var]]),
+              color = data[[var]],
+              scale_fill_brewer(palette = "RdYlBu"),
+              text = data[[paste0("hover_", var)]],
               hoverinfo = "text") %>% 
     layout(geo = list(scope = "usa")) %>% 
     config(displayModeBar = FALSE) %>% 
     colorbar(title = "number of incidents")
   return(map)
 }
+

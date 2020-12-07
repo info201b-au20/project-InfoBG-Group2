@@ -14,9 +14,8 @@ ui <- fluidPage(
             inputId = "mapvar",
             label = "Variable to Map",
             choices = list(
-              "Gun Violence Incidents" = "incidents",
-              "Gun Violence Deaths" = "num_killed",
-              "Police Shootings" = "cases"
+              "Overall Incidents" = "incidents",
+              "Overall Deaths" = "num_killed"
             )
           )
         ),
@@ -40,3 +39,4 @@ ui <- fluidPage(
     )
   )
 )
+
