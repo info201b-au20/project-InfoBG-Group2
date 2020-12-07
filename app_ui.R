@@ -1,3 +1,19 @@
+main_content <- mainPanel(
+  img(src = "gun.jpg",  height = 250, width = 450),
+  p(em("Image: The Atlantic")),
+  p(
+    "For this project focused on how gun violence by police has changed over the
+    years",
+    strong("how gun violence by police has changed over the
+    years"),
+    "at the US, ",
+    strong("whether police shootings targeted a racial group"),
+    "more than the others, and the ",
+    strong("gun incident characteristics"),
+    "(whether the suspects were armed, how badly they were injured etc.)"
+  )
+)
+
 intro_panel <- tabPanel(
   "Introduction",
   
