@@ -1,5 +1,8 @@
 library(dplyr)
+library(tidyr)
 library(shiny)
+library(plotly)
+library(RColorBrewer)
 
 ################################################################################
 # Read in data
@@ -37,8 +40,26 @@ state_gun_violence <- state_gun_violence %>%
   select(year, state_abbr, num_killed, incidents, hover_incidents, hover_num_killed)
 
 ################################################################################
-#Bar
+# Bar chart data
+# Yearly shootings by race
+year_by_race <- mutate(
+  police_shootings,
+  year = format(as.Date(police_shootings$date, format="%Y-%m-%d"),"%Y")
+)
 
+year_by_race <- year_by_race %>% 
+  group_by(year, race) %>% 
+  summarise(cases = n())
+
+year_by_race <- year_by_race %>% 
+  spread(year, cases)
+
+names(year_by_race)[2] <- "year2015"
+names(year_by_race)[3] <- "year2016"
+names(year_by_race)[4] <- "year2017"
+names(year_by_race)[5] <- "year2018"
+names(year_by_race)[6] <- "year2019"
+names(year_by_race)[7] <- "year2020"
 
 ################################################################################
 #Pie
@@ -54,5 +75,12 @@ server <- function(input, output) {
   output$map <- renderPlotly({ 
     return(build_map(state_gun_violence, input$mapvar))
   }) 
+  
+  output$bar <- renderPlotly ({
+    race_plot <- ggplot(year_by_race, aes(x = race, fill = race)) +
+      geom_col(aes_string(y = input$y_input)) +
+      labs(x = "Race", y = "Number of Fatal Shootings")
+    ggplotly(race_plot)
+  })
 }
 
