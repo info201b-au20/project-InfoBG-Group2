@@ -1,3 +1,16 @@
+y_input <- selectInput(
+  inputId = "y_input",
+  label = "Choose a Year",
+  choices = list(
+    "2015" = "year2015",
+    "2016" = "year2016",
+    "2017" = "year2017",
+    "2018" = "year2018",
+    "2019" = "year2019",
+    "2020" = "year2020"
+  )
+)
+
 ui <- fluidPage(
   navbarPage(
     "US Gun Violence & Police Shooting Report",
@@ -28,7 +41,10 @@ ui <- fluidPage(
     ),
     
     tabPanel(
-      title = "Bar", 
+      title = "Bar Chart of Fatal Shootings by Race", 
+      titlePanel("Fatal Police Shootings by Race"),
+      y_input,
+      plotlyOutput("bar")
     ),
     
     tabPanel(
