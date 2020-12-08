@@ -136,7 +136,18 @@ ui <- fluidPage(
     
     # page - conclusion
     tabPanel(
-      title = "Takeaways", 
+      title = "Takeaways",
+      p(
+        "Gun violence in the United States is an incredibly complex issue. Through this analysis, the surface of gun violence incidents has just been scratched, but a few key takeaways have been discovered."
+      ),
+      uiOutput("List"),
+      p(
+        "These takeaways lead to an important realisation, that areas with ",
+        strong("greater "),
+        "populations will generally have ",
+        strong("more "),
+        "gun incidents. If this recognition is made, the conclusion is not that certain groups of people or certain places are responsible for more gun incidents, but that more people leads to more gun incidents. This is important for legislation and gun reform in the US, because maybe there is a solution for gun reform that is based on population size, rather than other factors. These statistics come in a context and in no way tell a full story of gun incidents in America. But they do show that the issue is complex and that it is important to understand statistics in context, before making decisions on key issues."
+      )
     )
   )
 )
