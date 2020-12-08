@@ -1,3 +1,7 @@
+library("shiny")
+library("tidyverse")
+library(plotly)
+
 main_content <- mainPanel(
   img(src = "gun.jpg",  height = 250, width = 450),
   p(em("Image: The Atlantic")),
@@ -49,6 +53,8 @@ ui <- fluidPage(
   navbarPage(
     "US Gun Violence & Police Shooting Report",
     intro_panel,
+    
+    # interactive page 1 - map
     tabPanel(
       title = "Map", 
       titlePanel("Gun Violence Trends in the United States"),
@@ -70,6 +76,7 @@ ui <- fluidPage(
       )
     ),
     
+    # interactive page 2 - bar
     tabPanel(
       title = "Bar Chart of Fatal Shootings by Race", 
       titlePanel("Fatal Police Shootings by Race"),
@@ -77,10 +84,23 @@ ui <- fluidPage(
       plotlyOutput("bar")
     ),
     
+    # interactive page 3 - pie
     tabPanel(
-      title = "By Sector", 
+      title = "By Sector",
+      
+      sidebarLayout(
+        sidebarPanel(
+          # inputs
+          
+        ),
+      
+      mainPanel(
+        plotOutput("pie")
+      )
+      )
     ),
     
+    # page - conclusion
     tabPanel(
       title = "Takeaways", 
     )

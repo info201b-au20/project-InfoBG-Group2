@@ -6,6 +6,7 @@ library(RColorBrewer)
 
 ################################################################################
 # Read in data
+source('./scripts/pie.R')
 source('./scripts/map.R')
 gun_violence <- read.csv("data/USGunViolence.csv")
 police_shootings <- read.csv("data/USPoliceShootings.csv")
@@ -63,7 +64,33 @@ names(year_by_race)[7] <- "year2020"
 
 ################################################################################
 #Pie
+incident_type <- gun_violence$incident_characteristics
+high_lev_incident_type <- str_replace(incident_type, "\\|.*", "")
+high_lev_incident_type <- table(high_lev_incident_type)
+gun_violence_type <- as.data.frame(high_lev_incident_type)
 
+# Too many categories, need to group those with fewer numbers into one single
+# category labeled as "other".
+small <- gun_violence_type %>%
+  filter(Freq < 1500) %>%
+  summarise(other = sum(Freq)) %>%
+  select(other)
+
+other <- small %>%
+  gather("high_lev_incident_type", "Freq", other)
+
+keep <- subset(gun_violence_type, Freq > 1500)
+
+grouped_incident_type <- full_join(other, keep)
+
+# pie chart label location
+grouped_incident_type <- grouped_incident_type %>% 
+  arrange(desc(high_lev_incident_type)) %>%
+  mutate(prop = Freq / sum(grouped_incident_type$Freq) *100) %>%
+  mutate(ypos = cumsum(prop)- 0.5*prop ) %>%
+  mutate(percent = paste(round(prop, digits = 2), "%"))
+
+label_list <- c(t(grouped_incident_type$Freq), t(grouped_incident_type$percent))
 
 ################################################################################
 #Summary
@@ -72,6 +99,7 @@ names(year_by_race)[7] <- "year2020"
 ################################################################################
 #Start shinyServer
 server <- function(input, output) {
+  
   output$map <- renderPlotly({ 
     return(build_map(state_gun_violence, input$mapvar))
   }) 
@@ -81,6 +109,11 @@ server <- function(input, output) {
       geom_col(aes_string(y = input$y_input)) +
       labs(x = "Race", y = "Number of Fatal Shootings")
     ggplotly(race_plot)
+  })
+  
+  
+  output$pie <- renderPlot ({
+    return(build_pie(grouped_incident_type))
   })
 }
 

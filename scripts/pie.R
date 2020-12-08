@@ -31,7 +31,8 @@ grouped_incident_type <- full_join(other, keep)
 grouped_incident_type <- grouped_incident_type %>% 
   arrange(desc(high_lev_incident_type)) %>%
   mutate(prop = Freq / sum(grouped_incident_type$Freq) *100) %>%
-  mutate(ypos = cumsum(prop)- 0.5*prop )
+  mutate(ypos = cumsum(prop)- 0.5*prop ) %>%
+  mutate(percent = paste(round(prop, digits = 2), "%"))
 
 # generating a pie chart
 p_pie <- 
@@ -45,3 +46,19 @@ p_pie <-
   scale_fill_discrete(name = "Incident Characteristics")
 
 p_pie
+
+##############################################################################
+# Shiny build pie
+
+build_pie <- function(data, var) {
+  p_pie <- 
+    ggplot(data = data, 
+           aes(x = "", y = prop, fill = high_lev_incident_type)) +
+    geom_bar(stat="identity", width=1, color="white") +
+    coord_polar("y", start=0) +
+    theme_void() +
+    geom_text(aes(x = 1.6, y = ypos, label = percent), color = "black", size=3) +
+    labs(title = "Pie Chart of High Level Gun Violence Incident Characteristics") +
+    scale_fill_discrete(name = "Incident Characteristics")
+  return(p_pie)
+}
