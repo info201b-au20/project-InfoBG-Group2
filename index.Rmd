@@ -1,0 +1,83 @@
+---
+title: "Exploratory Analysis"
+author: "Jacob Fell, Doris Xu, Hatice Ece Oz, Xiaoyu Zhu, Ellie Stegman"
+date: "11/11/2020"
+output: html_document
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+source("scripts/summary.R")
+source("scripts/table.R")
+source("scripts/map.R")
+source("scripts/bar chart.R")
+source("scripts/pie.R")
+
+library("knitr")
+```
+
+# Gun Violence and Police Shooting in the U.S.
+
+## 1 Introduction
+The U.S. is an exceptional country when it comes to guns. It’s one of the few countries in which the right to bear arms is constitutionally protected. But the relationship between U.S. and guns is in a crucial way, which indicates it is far and away from the most homicidal incidents among all of the developed nations. Moreover, the causation of the recent well-known Black Lives Matter movement drives us to further relate U.S. gun incidents with police gun shootings. Thus, it led us curious about public safety and injustice in the United States since it is affecting all parts of our population, ourselves included.
+
+The data in this dataset was downloaded from [kaggle](https://www.kaggle.com/). In the following report, we will mainly use two datasets, US Police Shootings and US Gun Violence. [US Gun Violence](https://www.kaggle.com/ericking310/us-gun-violence) gathered by Eric Jing The CSV file contains data for all recorded gun violence incidents in the US between January 2013 to March 2018. The data consist of 240k incidents, with detailed information about each incident. [US Police Shootings](https://www.kaggle.com/ahsen1330/us-police-shootings) collected by Ahsen Nazir, a data analyst. The data is about police shootings in the United States across different states. The data also involves details about a race, whether the person was armed, threatening had a mental illness, etc. It contains 5924 observations and 15 features. One of the questions can be related to this dataset is whether or not specific racial groups are more subjected to police shootings.
+
+
+## 2 Executive summary
+The primary data we looked at (USPoliceShootings) has `r summary_info$rows` observations and `r summary_info$cols` columns. The columns contain information about the id, name, date, manner of death, age, gender, race, city, state, signs of mental illness, threat level, flee, body camera, and arms category. We have looked at two liberal states (Washington and California) and two conservative states (Minnesota and Texas). The shooting incidents were `r summary_info$num_wa`, `r summary_info$num_ca`, `r summary_info$num_ms`, `r summary_info$num_tx` in those states respectively. We think we also need population information for those states to make a more fair analysis about police violence in those states. The mean age of the victims was `r summary_info$mean_age`. The dataset contains data from 2015 to 2020, though only through June in 2020. The incidents were `r summary_info$in_2015`, `r summary_info$in_2016`, `r summary_info$in_2017`, `r summary_info$in_2018`, `r summary_info$in_2019` and `r summary_info$in_2020` respectively in those years. The dataset also contained information about 4 racial groups.  The number of incidents for the Asian category was `r summary_info$num_asian`, `r summary_info$num_black` for Black, `r summary_info$num_hispanic` for Hispanic and `r summary_info$num_white` for White racial group.  `r summary_info$mentall_ill` of the victims also showed signs of mental illness.
+
+
+## 3 Table 
+- We combine both US Police Shootings dataset and US Gun violence dataset by 
+their mutual time range, which is from 01/02/2015 to 03/31/2018.
+- From dataset, we find out that gun death only holds little of the proportion
+among gun violence.
+- By combining both data, it is help us to understand that police shooting
+incidents are only occupy `r rate_police_shooting`% among all gun violence in
+the U.S..
+- To further extend the understanding of the police shooting incidents, we
+include the race of the victims in the police shooting incidents to explore is
+that there exist racial issue and injustice. 
+
+```{r}
+explantory_analysis_df
+```
+
+
+## 4 Data Exploration 
+### 4.1 Overall gun violence trends in the U.S. from 2013 to 2020
+- This map was intended to show geographic trends in gun incidents in the U.S. from 2013 to 2018.
+- East coast states have more gun incidents than states in central and west.
+- The majority of gun violence takes place in California, Texas, Florida, and Illinois.
+```{r}
+gun_incidents_map
+```
+- This map was intended to show geographic trends in police shooting incidents in the U.S. from 2015 to 2020.
+- Both east and west coast states have relatively more gun incidents than states in central.
+- The majority of police violence takes place in California, Texas, and Florida.
+```{r}
+police_shooting_map
+```
+
+
+### 4.2 US Police Shooting Victims by Race
+- This bar chart was intended to show trends in gun incidents in the U.S. from 2013 to 2018.
+- It shows the distribution of the race of each of the victims of a fatal police shooting.
+- The majority of victims have been white, almost double the amount of black victims which is the second highest.
+- Asian, Native, and other races have significantly smaller incidences. 
+```{r}
+shooting_by_race
+```
+
+
+### 4.3
+- This pie chart was intended to show the proportion of different characteristics of gun incidents in the U.S. from 2013 to 2018.
+- The top 7 high level characteristics that have the greatest rate of occurrence are "Shot-Wounded/Injured", "Shot-Dead", "Non-shooting Incident", "Shots Fired - No injuries", "Armed robbery", "Non-shooting Incident", "Institution/Group/Business", and "TSA action".
+- There are totally 53 types of high level characteristics. For a better visualization as a whole, rarer characteristics were grouped into a category named "other", but it doesn't mean the completely ignoring of those characteristics. In later data exploration, we will also zoom into this category.
+- More than half of the gun violence incidents were resulted in either injury or deaths.
+- When talking about gun violence, there are a also a lot of non-shooting incidents.
+```{r}
+p_pie
+```
