@@ -37,3 +37,4 @@ rsconnect/
 USGunViolence.csv
 state_abbrev.csv
 USPoliceShootings.csv
+.DS_Store
