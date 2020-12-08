@@ -1,3 +1,7 @@
+library("shiny")
+library("tidyverse")
+library(plotly)
+
 main_content <- mainPanel(
   p(
     "For this project focused on how gun violence by police has changed over the
@@ -75,6 +79,8 @@ ui <- fluidPage(
     "US Gun Violence & Police Shooting Report",
     
     intro_panel,
+    
+    # interactive page 1 - map
     tabPanel(
       title = "Map", 
       titlePanel("Gun Violence Trends in the United States"),
@@ -96,6 +102,7 @@ ui <- fluidPage(
       )
     ),
     
+    # interactive page 2 - bar
     tabPanel(
       title = "Bar Chart of Fatal Shootings by Race", 
       titlePanel("Fatal Police Shootings by Race"),
@@ -103,10 +110,31 @@ ui <- fluidPage(
       plotlyOutput("bar")
     ),
     
+    # interactive page 3 - pie
     tabPanel(
-      title = "By Sector", 
+      title = "By Sector",
+      
+      sidebarLayout(
+        sidebarPanel(
+          # inputs
+          selectInput(
+            inputId = "typeInput",
+            label = "Select a gun incident type:",
+            choices = gun_violence_type$high_lev_incident_type,
+            selected = "Shot - Wounded/Injured",
+            multiple = TRUE
+          )
+        ),
+      
+      mainPanel(
+        h3("Pie Chart of High Level Gun Violence Incident Characteristics"),
+        plotlyOutput("pie"),
+        tableOutput("pie_table")
+      )
+      )
     ),
     
+    # page - conclusion
     tabPanel(
       title = "Takeaways", 
     )

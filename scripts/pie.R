@@ -1,4 +1,5 @@
 library(tidyverse)
+library(plotly)
 
 # DF1: US Gun Violence
 
@@ -31,7 +32,8 @@ grouped_incident_type <- full_join(other, keep)
 grouped_incident_type <- grouped_incident_type %>% 
   arrange(desc(high_lev_incident_type)) %>%
   mutate(prop = Freq / sum(grouped_incident_type$Freq) *100) %>%
-  mutate(ypos = cumsum(prop)- 0.5*prop )
+  mutate(ypos = cumsum(prop)- 0.5*prop ) %>%
+  mutate(percent = paste(round(prop, digits = 2), "%"))
 
 # generating a pie chart
 p_pie <- 
@@ -40,8 +42,33 @@ p_pie <-
   geom_bar(stat="identity", width=1, color="white") +
   coord_polar("y", start=0) +
   theme_void() +
-  geom_text(aes(x = 1.6, y = ypos, label = Freq), color = "black", size=3) +
+  geom_text(aes(x = 1.6, y = ypos, label = percent), color = "black", size=3) +
   labs(title = "Pie Chart of High Level Gun Violence Incident Characteristics") +
   scale_fill_discrete(name = "Incident Characteristics")
 
 p_pie
+
+p1_pie <- plot_ly(grouped_incident_type, 
+                  labels = ~high_lev_incident_type,
+                  values = ~grouped_incident_type$prop,
+                  type = 'pie')
+p1_pie <- p1_pie %>% 
+  layout(title = '1',
+         xaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
+         yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE))
+p1_pie
+
+##############################################################################
+# Shiny build pie
+
+build_pie <- function(data) {
+  p1_pie <- plot_ly(data, 
+                    labels = ~data$high_lev_incident_type,
+                    values = ~data$Freq,
+                    type = 'pie')
+  p1_pie <- p1_pie %>% 
+    layout(xaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
+           yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
+           legend = list(x = 100, y = 0.5))
+  return(p1_pie)
+}
