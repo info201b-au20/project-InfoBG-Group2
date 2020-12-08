@@ -11,10 +11,6 @@ gun_violence <- read.csv("data/USGunViolence.csv")
 police_shootings <- read.csv("data/USPoliceShootings.csv")
 
 ################################################################################
-#Intro
-
-
-################################################################################
 #map data cleanup
 ##Gun Violence data
 year_gun_violence <- mutate(
