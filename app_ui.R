@@ -91,12 +91,19 @@ ui <- fluidPage(
       sidebarLayout(
         sidebarPanel(
           # inputs
-          
+          selectInput(
+            inputId = "typeInput",
+            label = "Select a gun incident type:",
+            choices = gun_violence_type$high_lev_incident_type,
+            selected = "Shot - Wounded/Injured",
+            multiple = TRUE
+          )
         ),
       
       mainPanel(
         h3("Pie Chart of High Level Gun Violence Incident Characteristics"),
-        plotlyOutput("pie")
+        plotlyOutput("pie"),
+        tableOutput("pie_table")
       )
       )
     ),

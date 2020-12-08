@@ -68,6 +68,9 @@ incident_type <- gun_violence$incident_characteristics
 high_lev_incident_type <- str_replace(incident_type, "\\|.*", "")
 high_lev_incident_type <- table(high_lev_incident_type)
 gun_violence_type <- as.data.frame(high_lev_incident_type)
+gun_violence_type[1,1] <- "Unknown"
+gun_violence_type <- gun_violence_type %>%
+  mutate(Percentage = paste(round(Freq / sum(Freq) * 100, digits = 3), "%"))
 
 # Too many categories, need to group those with fewer numbers into one single
 # category labeled as "other".
@@ -114,6 +117,10 @@ server <- function(input, output) {
   
   output$pie <- renderPlotly ({
     return(build_pie(grouped_incident_type))
+  })
+  
+  output$pie_table <- renderTable ({
+    subset(gun_violence_type, high_lev_incident_type %in% input$typeInput)
   })
 }
 

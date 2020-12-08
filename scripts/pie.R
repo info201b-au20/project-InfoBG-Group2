@@ -64,7 +64,7 @@ p1_pie
 build_pie <- function(data) {
   p1_pie <- plot_ly(data, 
                     labels = ~data$high_lev_incident_type,
-                    values = ~data$prop,
+                    values = ~data$Freq,
                     type = 'pie')
   p1_pie <- p1_pie %>% 
     layout(xaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
