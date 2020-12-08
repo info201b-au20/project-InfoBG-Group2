@@ -112,7 +112,7 @@ server <- function(input, output) {
   })
   
   
-  output$pie <- renderPlot ({
+  output$pie <- renderPlotly ({
     return(build_pie(grouped_incident_type))
   })
 }

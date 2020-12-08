@@ -95,7 +95,8 @@ ui <- fluidPage(
         ),
       
       mainPanel(
-        plotOutput("pie")
+        h3("Pie Chart of High Level Gun Violence Incident Characteristics"),
+        plotlyOutput("pie")
       )
       )
     ),
