@@ -98,6 +98,7 @@ label_list <- c(t(grouped_incident_type$Freq), t(grouped_incident_type$percent))
 ################################################################################
 #Start shinyServer
 server <- function(input, output) {
+  output$List <- renderUI(HTML("<ul><li>...Gun incidents are more frequent on the coasts of the US than in the center...</li><li>...California, Illinois, Florida, and Texas have the highest number of gun incidents...</li><li>...More gun incidents involve white individuals than those of other races...</li></ul>"))
   
   output$map <- renderPlotly({ 
     return(build_map(state_gun_violence, input$mapvar))
