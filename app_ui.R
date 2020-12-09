@@ -8,7 +8,8 @@ intro_panel <- tabPanel(
            tags$div(class = "row banner",
                     tags$style(".banner {
                                background-image: url('gun.jpg')}"), 
-                    p(em("Image: The Atlantic"))
+                    p(class = "img-from",
+                      em("Image: The Atlantic"))
                     ),
            tags$div(class="row info",
                    tags$div(class = "intro",

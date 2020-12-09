@@ -50,6 +50,11 @@
     margin: auto !important;
 }
 
+.img-from {
+  margin-top: 680px;
+  margin-left: 20px;
+}
+
 .info {
   background-color: white;
   margin: 0 40px;
