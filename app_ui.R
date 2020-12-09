@@ -15,7 +15,7 @@ intro_panel <- tabPanel(
                             tags$hr(class = "intro-hr"),
                             tags$h1("ABOUT THE PROJECT"),
                             tags$hr(class = "intro-hr"),
-                            tags$p(class = "intro-para", "For this project 
+                            tags$p(class = "intro-para", "This project 
                             focused on how gun violence by police has changed 
                             over the years", tags$strong("how gun violence by 
                             police has changed over the years"), "at the US, ", 
@@ -68,7 +68,7 @@ intro_panel <- tabPanel(
 
 map_panel <- tabPanel(
   title = "Map", 
-  tags$h2(class = "map-title",
+  tags$h2(class = "title",
           "Gun Violence Trends in the United States"),
   sidebarLayout(
     sidebarPanel(
@@ -118,15 +118,20 @@ ui <- fluidPage(
     # interactive page 2 - bar
     tabPanel(
       title = "Bar Chart of Fatal Shootings by Race", 
-      titlePanel("Fatal Police Shootings by Race"),
-      y_input,
-      plotlyOutput("bar")
+      tags$h2(class = "title bar-title", "Fatal Police Shootings by Race"),
+      sidebarLayout(
+        sidebarPanel(
+          y_input
+        ),
+        mainPanel(
+          plotlyOutput("bar"))
+        )
     ),
     
     # interactive page 3 - pie
     tabPanel(
       title = "By Sector",
-      
+      tags$h2(class = "title", "High Level Gun Violence Incident Characteristics"),
       sidebarLayout(
         sidebarPanel(
           # inputs
@@ -136,13 +141,12 @@ ui <- fluidPage(
             choices = gun_violence_type$high_lev_incident_type,
             selected = "Shot - Wounded/Injured",
             multiple = TRUE
-          )
+          ),
+          tableOutput("pie_table")
         ),
       
       mainPanel(
-        h3("Pie Chart of High Level Gun Violence Incident Characteristics"),
-        plotlyOutput("pie"),
-        tableOutput("pie_table")
+        plotlyOutput("pie")
       )
       )
     ),
@@ -150,17 +154,30 @@ ui <- fluidPage(
     # page - conclusion
     tabPanel(
       title = "Takeaways",
-      p(
-        "Gun violence in the United States is an incredibly complex issue. Through this analysis, the surface of gun violence incidents has just been scratched, but a few key takeaways have been discovered."
-      ),
-      uiOutput("List"),
-      p(
-        "These takeaways lead to an important realisation, that areas with ",
-        strong("greater "),
-        "populations will generally have ",
-        strong("more "),
-        "gun incidents. If this recognition is made, the conclusion is not that certain groups of people or certain places are responsible for more gun incidents, but that more people leads to more gun incidents. This is important for legislation and gun reform in the US, because maybe there is a solution for gun reform that is based on population size, rather than other factors. These statistics come in a context and in no way tell a full story of gun incidents in America. But they do show that the issue is complex and that it is important to understand statistics in context, before making decisions on key issues."
-      )
+      tags$h2(class = "title", "What We Have Learned"),
+      tags$div(class = "conclu",
+               tags$p(class = "conclu-para",
+                      "Gun violence in the United States is an incredibly 
+                      complex issue. Through this analysis, the surface of gun 
+                      violence incidents has just been scratched, but a few key 
+                      takeaways have been discovered."
+                      ),
+               uiOutput("List"),
+               tags$hr(),
+               p(class = "conclu-para",
+                 "These takeaways lead to an important realisation, that areas 
+                 with ", strong("greater "), "populations will generally have ",
+                 strong("more "), "gun incidents. If this recognition is made, 
+                 the conclusion is not that certain groups of people or certain 
+                 places are responsible for more gun incidents, but that more 
+                 people leads to more gun incidents. This is  important for 
+                 legislation and gun reform in the US, because maybe there is a 
+                 solution for gun reform that is based on population size, 
+                 rather than other factors. These statistics come in a context 
+                 and in no way tell a full story of gun incidents in America. 
+                 But they do show that the issue is complex and that it is 
+                 important to understand statistics in context, before making 
+                 decisions on key issues."))
     )
   )
 )
