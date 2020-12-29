@@ -61,7 +61,7 @@ intro_panel <- tabPanel(
                                tags$p(class = "text-muted",
                                "Built by Jacob Fell, Doris Xu, Hatice Ece Oz, ", 
                                tags$a(href="https://www.linkedin.com/in/xiaoyu-zhu-2495b01a1/",
-                               "Rita Zhu"), ", and Ellie Stegman")
+                               "Rita Z."), ", and Ellie Stegman")
                                )
                    )
            )
